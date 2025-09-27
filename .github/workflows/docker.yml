@@ -28,10 +28,15 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and push (explicit lowercase tag)
         uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: |
+            ghcr.io/baumpi/zero-width-obfuscator:latest
+          labels: |
+            org.opencontainers.image.source=https://github.com/baumpi/zero-width-obfuscator
+            org.opencontainers.image.title=zero-width-obfuscator
+            org.opencontainers.image.description=Static Vite+React build served by Nginx

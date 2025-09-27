@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    image: zw-obfuscator:latest
+    container_name: zw-obfuscator
+    ports:
+      - "8080:80"
+    restart: unless-stopped
